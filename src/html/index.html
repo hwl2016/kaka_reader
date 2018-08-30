@@ -2,42 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta content="telephone=no" name="format-detection" />
     <title>卡卡小说</title>
-    <link rel="stylesheet" href="/secondlevel_account/prd/styles/secondAcount/index@ver.css" />
+    <script>
+        //字体自适应
+        (function() {
+            var fontSize = 100;	//根字体的大小
+            var diviceWidth = 375;
+            var page = document.getElementsByTagName('body')[0];
+            var docEl = document.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    if(fontSize * (docEl.clientWidth / diviceWidth) <= 85.333) {
+                        docEl.style.fontSize = '85.333px';
+                    }else if(fontSize * (docEl.clientWidth / diviceWidth) > 140) {
+                        docEl.style.fontSize = '140px';
+                    }else {
+                        docEl.style.fontSize = fontSize * (docEl.clientWidth / diviceWidth) + 'px';
+                    }
+                };
+            if(window.addEventListener) {
+                window.addEventListener(resizeEvt, recalc, false);
+                document.addEventListener('DOMContentLoaded', recalc, false);
+            }
+            //document.body.style.display = 'block';
+        })();
+    </script>
 </head>
 <body>
-    <div id="app" :class="[deviceCls,navCls]" v-touch.canrepeat="onBodyClick">
-        <ui-android-status-bar v-if="isImmersive"
-                               :height="statusBarHeight"
-                               :background="statusBarBackground"
-        ></ui-android-status-bar>
-        <ui-font-style></ui-font-style>
-        <ui-loading :showloading="showloading" :text="loadingtext"></ui-loading>
-        <ui-dialog
-            :showdialog="dialogOption.showdialog"
-            :title="dialogOption.dialogTitle"
-            :msg="dialogOption.msg"
-            :btntext="dialogOption.btntext"
-            :extbtntext="dialogOption.extbtntext"
-            @closedialog="dialogBtnClick"
-            @extBtnClick="extBtnClick"
-        ></ui-dialog>
-        <ui-mask v-if="showMask"></ui-mask>
-        <ui-tip :tip-option="tipOption"></ui-tip>
-        <transition name="popup" mode="out-in">
-            <ui-keyboard v-if="keyboardOptions.show" @keyclick="onKeyboardClick" :type="keyboardOptions.type" :config="keyboardOptions.config"></ui-keyboard>
-        </transition>
-        <!--<ui-toast :toastOptions="toastOptions"></ui-toast>-->
-        <transition :name="transitionName" mode="in-out">
-            <router-view class="child-view"></router-view>
-        </transition>
-    </div>
-    <script src="/secondlevel_account/prd/manifest@ver.js"></script>
-    <script src="/secondlevel_account/prd/lib@ver.js"></script>
-    <script src="/secondlevel_account/prd/scripts/secondAcount/app@ver.js"></script>
+<div id="app"></div>
 </body>
-
 </html>
