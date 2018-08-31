@@ -14,9 +14,13 @@ const config = {
         publicPath: '/'
     },
     resolve: {
-        // alias: {
-        //     vue: 'vue/dist/vue.js',
-        // }
+        alias: {
+            $styles: path.join(__dirname, './src/styles/'),
+            $common: path.join(__dirname, './src/scripts/common/'),
+            $comp: path.join(__dirname, './src/scripts/components/'),
+            $pages: path.join(__dirname, './src/scripts/pages/'),
+            $router: path.join(__dirname, './src/scripts/router/')
+        }
     },
     module:{
         rules:[
@@ -72,7 +76,7 @@ const config = {
             inject: true,
             minify: {
                 removeComments: true,
-                collapseWhitespace: true,
+                collapseWhitespace: false,
                 removeAttributeQuotes: true
             },
             chunksSortMode: 'dependency'
@@ -97,18 +101,18 @@ if (isDev) {  //开发环境
     })
     config.devtool = '#cheap-module-eval-source-map'
     config.devServer = {
-        port: 9005,
+        port: 9000,
         host: '127.0.0.1',
         overlay: {
             errors:true
         },
-        open:true,
+        open:false,
         hot: true
     },
-        config.plugins.push(
-            new webpack.HotModuleReplacementPlugin(),
-            new webpack.NoEmitOnErrorsPlugin()
-        )
+    config.plugins.push(
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
+    )
 }else{
     config.entry = {
         app: path.join(__dirname, './src/scripts/app.js'),
