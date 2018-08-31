@@ -5,7 +5,11 @@
 </template>
 <script>
     export default {
-        
+        data() {
+            return {
+                transitionName: 'slide-right',
+            }
+        }
     }
 </script>
 <style lang="stylus">

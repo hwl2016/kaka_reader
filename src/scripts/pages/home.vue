@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="home-page">
         <Header></Header>
         <div class="content">
             <div class="slider-wrapper">
@@ -12,12 +12,15 @@
                 </Slider>
             </div>
             <div class="search-wrapper">
-                <div class="search">
+                <div class="search" @click="search">
                     <span class="iconfont">&#xe62b;</span>
                     <span>搜索</span>
                 </div>
             </div>
         </div>
+        <transition name="slide-right" mode="out-in">
+            <router-view class="container child-view"></router-view>
+        </transition>
     </div>
 </template>
 <script>
@@ -50,7 +53,11 @@
         created() {},
         mounted() {},
         methods: {
-
+            search() {
+                this.$router.push({
+                    path: '/home/search'
+                })
+            }
         }
     }
 </script>

@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+// import HomePage from '../pages/home.vue'
+// import SearchPage from '../pages/search.vue'
 // let config = {
 //     isLogin: true,
 //     access_token: 'asdf1234',
@@ -11,8 +14,14 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const Home = (resolve) => {
+const HomePage = (resolve) => {
     import('../pages/home.vue').then((module) => {
+        resolve(module)
+    })
+}
+
+const SearchPage = (resolve) => {
+    import('../pages/search.vue').then((module) => {
         resolve(module)
     })
 }
@@ -20,8 +29,25 @@ const Home = (resolve) => {
 export default new Router({
     routes: [
         {
-            path: '/',  // 首页
-            component: Home
+            path: '/',
+            redirect: '/home'
+        },
+        {
+            path: '/home',  // 首页
+            name: 'HomePage',
+            component: HomePage,
+            children: [
+                {
+                    path: 'search',
+                    name: 'SearchPage',
+                    component: SearchPage
+                }
+            ]
+        },
+        {
+            path: '/search',
+            name: 'SearchPage',
+            component: SearchPage
         }
     ]
 })
