@@ -1,5 +1,7 @@
 <template>
-    <router-view></router-view>
+    <div id="wrapper">
+        <router-view class="container"></router-view>
+    </div> 
 </template>
 <script>
     export default {

@@ -1,5 +1,7 @@
-import Header from '$comp/header/header.vue'
+import Header from '$comp/Header/header.vue'
+import Slider from '$comp/Slider/slider.vue'
 
 export {
-    Header
+    Header,
+    Slider
 }
