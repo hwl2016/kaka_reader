@@ -107,7 +107,8 @@ if (isDev) {  //开发环境
             errors:true
         },
         open:false,
-        hot: true
+        hot: true,
+        contentBase: path.join(__dirname, 'dist')
     },
     config.plugins.push(
         new webpack.HotModuleReplacementPlugin(),

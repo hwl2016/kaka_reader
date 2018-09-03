@@ -18,9 +18,6 @@
                 </div>
             </div>
         </div>
-        <transition name="slide-right" mode="out-in">
-            <router-view class="container child-view"></router-view>
-        </transition>
     </div>
 </template>
 <script>
@@ -55,7 +52,7 @@
         methods: {
             search() {
                 this.$router.push({
-                    path: '/home/search'
+                    path: '/search'
                 })
             }
         }

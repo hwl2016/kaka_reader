@@ -35,14 +35,7 @@ export default new Router({
         {
             path: '/home',  // 首页
             name: 'HomePage',
-            component: HomePage,
-            children: [
-                {
-                    path: 'search',
-                    name: 'SearchPage',
-                    component: SearchPage
-                }
-            ]
+            component: HomePage
         },
         {
             path: '/search',
